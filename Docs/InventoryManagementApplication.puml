@@ -1,7 +1,72 @@
 @startuml
 'https://plantuml.com/class-diagram
+GUIController->InventoryManagementApplication
+GUIController-->saveItemList
+GUIController-->loadItemList
+ItemList->GUIController
+Item->ItemList
 
-abstract class InventoryManagementApplication
 
+class InventoryManagementApplication{
+This is the Entry point for the Application
+
+-main();
+}
+
+class GUIController{
+This class will be the main body of
+my program and will control the GUI Controls
+
+ -addItemButton
+ -searchItemButton
+ -deleteItemButton
+ -helpButton
+ -ListView
+}
+
+class ItemList{
+This is the object which stores a
+list of items
+
+ - Item currentItem
+ - ObservableList<Item> ItemList.
+
+ -getItemList();
+ -setItemList();
+ -getCurrentItem();
+ -setCurrentItem();
+ -sortItemsByValue();
+ -sortItemsBySerialNumber();
+ -sortItemsByName();
+}
+
+class Item{
+
+   this is the item Object that
+   will be stored in the ItemList
+   Class.
+
+ - Double Value;
+ - Formatted String serialNumber;
+ - String itemName;
+
+ -setItemValue();
+ -getItemValue();
+ -setItemSerialNumber();
+ -getItemSerialNumber();
+ -setItemName();
+ -getItemName();
+ -Item();
+}
+
+class saveItemList{
+Takes the Current Item Lists and saves
+it to a file of a users choosing
+}
+
+class loadItemList{
+Takes the Current Item Lists and saves
+it to a file of a users choosing
+}
 
 @enduml
