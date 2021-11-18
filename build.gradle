@@ -16,14 +16,14 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-javafx{
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
-    version = '17.0.1'
+javafx {
+    modules = ['javafx.controls', 'javafx.fxml']
+    version
 }
+
 application{
     mainClass = "baseline.InventoryManagementApplication"
 }
-
 
 test {
     useJUnitPlatform()

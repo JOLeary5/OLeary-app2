@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="baseline.GUIController">
    <children>
       <SplitPane dividerPositions="0.06473214285714286" layoutX="99.0" orientation="VERTICAL" prefHeight="304.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -45,24 +44,27 @@
                                 <items>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
-                                          <Label layoutX="41.0" layoutY="5.0" text="Item Manipulation">
+                                          <Label layoutX="41.0" text="Item Manipulation">
                                              <font>
                                                 <Font size="13.0" />
                                              </font>
                                           </Label>
-                                          <Button layoutX="30.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Add Item" />
-                                          <Button layoutX="30.0" layoutY="124.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Delete Item" />
-                                          <Button layoutX="30.0" layoutY="74.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Edit Item" />
-                                          <Button layoutX="30.0" layoutY="170.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="128.0" text="Clear List" />
+                                          <Button layoutX="30.0" layoutY="24.0" mnemonicParsing="false" onAction="#addItemAction" prefHeight="25.0" prefWidth="128.0" text="Add Item" />
+                                          <Button layoutX="30.0" layoutY="120.0" mnemonicParsing="false" onAction="#deleteItemAction" prefHeight="25.0" prefWidth="128.0" text="Delete Item" />
+                                          <Button layoutX="30.0" layoutY="170.0" mnemonicParsing="false" onAction="#clearItemListAction" prefHeight="25.0" prefWidth="128.0" text="Clear List" />
+                                          <Button layoutX="30.0" layoutY="70.0" mnemonicParsing="false" onAction="#editItemAction" prefHeight="25.0" prefWidth="128.0" text="Edit Item" />
                                        </children>
                                     </AnchorPane>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
-                                          <Label layoutX="64.0" layoutY="5.0" text="Sort Items">
+                                          <Label layoutX="64.0" layoutY="14.0" text="Sort Items">
                                              <font>
                                                 <Font size="13.0" />
                                              </font>
                                           </Label>
+                                          <Button layoutX="30.0" layoutY="39.0" mnemonicParsing="false" onAction="#sortByValueAction" prefHeight="25.0" prefWidth="128.0" text="By Value" />
+                                          <Button layoutX="30.0" layoutY="89.0" mnemonicParsing="false" onAction="#sortSerialNumberAction" prefHeight="25.0" prefWidth="128.0" text="By Serial Number" />
+                                          <Button layoutX="30.0" layoutY="139.0" mnemonicParsing="false" onAction="#sortByNameAction" prefHeight="25.0" prefWidth="128.0" text="By Name" />
                                        </children>
                                     </AnchorPane>
                                 </items>
@@ -82,7 +84,7 @@
                                     </AnchorPane>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
-                                          <ListView layoutX="125.0" layoutY="105.0" prefHeight="373.0" prefWidth="449.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <ListView fx:id="listViewWindow" layoutY="14.0" prefHeight="373.0" prefWidth="449.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                 </items>
