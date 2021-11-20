@@ -1,22 +1,29 @@
 package baseline;
 
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Comparator;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class GUIController implements Initializable {
+
+    @FXML
+    TextField searchTextField;
     @FXML
     ListView<Item> listViewWindow;
-
 
     ItemList userItemList = new ItemList();
     Item currentItem;
@@ -28,6 +35,32 @@ public class GUIController implements Initializable {
         listViewWindow.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             currentItem = listViewWindow.getSelectionModel().getSelectedItem();
         });
+
+        FilteredList<Item> filteredItems = new FilteredList<>(userItemList.itemListAll, b -> true);
+
+        searchTextField.textProperty().addListener(((observable, oldValue, newValue) -> {
+            filteredItems.setPredicate(Item -> {
+
+                if (newValue.isEmpty() || newValue.isBlank()) {
+                    return true;
+                }
+
+                if (Item.getItemName().contains(newValue)){
+                    return true;
+                }
+                else if (Item.getItemProductNumber().contains(newValue)){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            });
+        }));
+
+        SortedList<Item> sortedList = new SortedList<>(filteredItems);
+        sortedList.comparatorProperty();
+        listViewWindow.setItems(sortedList);
+
     }
 
     public void addItemAction() throws IOException {
@@ -50,6 +83,11 @@ public class GUIController implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("editItemWindow.fxml"));
         Parent root = loader.load();
         editItemController editItemControl = loader.getController();
+
+        editItemControl.itemNameTextField.setText(currentItem.getItemName());
+        editItemControl.itemValueTextField.setText(currentItem.getItemValue().toString());
+        editItemControl.itemProductNumberTextField.setText(currentItem.getItemProductNumber());
+
         editItemControl.setParentController(this);
 
         Stage stage = new Stage();
@@ -81,9 +119,4 @@ public class GUIController implements Initializable {
         userItemList.itemListAll.sort(itemNameComparator);
     }
 
-
-
-    /*
-        The various button presses that utilize different Functions
-     */
 }
