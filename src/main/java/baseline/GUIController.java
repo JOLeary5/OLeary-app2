@@ -1,8 +1,8 @@
 package baseline;
 
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +15,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Comparator;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class GUIController implements Initializable {
@@ -72,7 +71,7 @@ public class GUIController implements Initializable {
         addItemControl.setParentController(this);
 
         Stage stage = new Stage();
-        stage.setTitle("Add item");
+        stage.setTitle("Add Item");
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -91,7 +90,7 @@ public class GUIController implements Initializable {
         editItemControl.setParentController(this);
 
         Stage stage = new Stage();
-        stage.setTitle("Edit item");
+        stage.setTitle("Edit Item");
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -119,4 +118,31 @@ public class GUIController implements Initializable {
         userItemList.itemListAll.sort(itemNameComparator);
     }
 
+    public void saveItemsAction() throws IOException {
+        System.out.println("Saving Items In list");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("saveItemsWindow.fxml"));
+        Parent root = loader.load();
+        saveItemController saveItemControl = loader.getController();
+        saveItemControl.setParentController(this);
+
+        Stage stage = new Stage();
+        stage.setTitle("Save Items");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    public void loadItemsAction() throws IOException {
+        System.out.println("Loading Items In list");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("loadItemsWindow.fxml"));
+        Parent root = loader.load();
+        loadItemController loadItemControl = loader.getController();
+        loadItemControl.setParentController(this);
+
+        Stage stage = new Stage();
+        stage.setTitle("Load Items");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
 }

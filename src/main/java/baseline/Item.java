@@ -24,6 +24,6 @@ public class Item {
         this.setItemName(name);
     }
 
-    public  String toString() {return this.name+"\t\t"+this.productNumber+"\t\t"+this.value;}
+    public  String toString() {return this.name+"\t"+this.productNumber+"\t$"+this.value;}
 
 }
