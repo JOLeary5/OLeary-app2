@@ -1,7 +1,9 @@
 package baseline;
 
 import javax.swing.*;
+import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.IOException;
 
 public class saveItemController {
 
@@ -34,8 +36,19 @@ public class saveItemController {
         }
     }
 
-    public void saveHTML() {
+    public void saveHTML() throws IOException {
         System.out.println("Saving By HTML");
+
+        JFrame parent = new JFrame();
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify a file to save");
+
+        int userSelection = fileChooser.showSaveDialog(parent);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION){
+            BufferedWriter bw = new BufferedWriter(new FileWriter(fileChooser.getSelectedFile()+".HTML"));
+        }
     }
 
     public void saveJSON() {

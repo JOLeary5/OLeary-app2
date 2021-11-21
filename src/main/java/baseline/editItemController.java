@@ -1,9 +1,9 @@
 package baseline;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,20 +33,23 @@ public class editItemController {
         Matcher productNumberMatcher = productNumberFormat.matcher(productNumber);
         boolean productNumberFormatCheck = productNumberMatcher.matches();
 
-
+        Boolean productNumberSimilarCheck = productNumberMatchingCheck(productNumber);
 
         if ((nameLength>=2) && (nameLength<=256)){
             if (productNumberFormatCheck){
                 System.out.println("ProductNumber Check (PASSED)");
-                try {
-                    value = Double.parseDouble(productValue);
-                    controller.currentItem.setItemName(name);
-                    controller.currentItem.setItemValue(value);
-                    controller.currentItem.setItemProductNumber(productNumber);
-                    controller.listViewWindow.refresh();
-                }
-                catch (NumberFormatException ignore){
-                    System.out.println("Incorrect Value Format");
+                if (Boolean.TRUE.equals(productNumberSimilarCheck)) {
+                    try {
+                        value = Double.parseDouble(productValue);
+                        controller.currentItem.setItemName(name);
+                        controller.currentItem.setItemValue(value);
+                        controller.currentItem.setItemProductNumber(productNumber);
+                        controller.listViewWindow.refresh();
+                    } catch (NumberFormatException ignore) {
+                        System.out.println("Incorrect Value Format");
+                    }
+                } else {
+                    System.out.println("Product Number SameCheck Failed, Enter a Unique Product Code");
                 }
             }
             else {
@@ -58,6 +61,16 @@ public class editItemController {
             System.out.println("Incorrect name format");
         }
 
+    }
+
+    private Boolean productNumberMatchingCheck(String productNum) {
+
+        for (int i=0; i<controller.userItemList.itemListAll.size(); i++) {
+            if (productNum.matches(controller.userItemList.itemListAll.get(i).getItemProductNumber())){
+                return false;
+            }
+        }
+        return true;
     }
 
     public void setParentController(GUIController guicontroller){
