@@ -4,14 +4,7 @@
  */
 package baseline;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
 import javax.swing.*;
 import java.io.*;
 import java.util.Scanner;
@@ -23,6 +16,7 @@ public class LoadItemController {
 
 
     public void loadTSB() throws FileNotFoundException {
+        controller.userItemList.itemListAll.clear();
         System.out.println("Loading By TSB");
         JFrame parent = new JFrame();
 
@@ -58,6 +52,7 @@ public class LoadItemController {
     }
 
     public void loadJSON() throws IOException {
+        controller.userItemList.itemListAll.clear();
         System.out.println("Loading by Jason");
 
         JFrame parent = new JFrame();
