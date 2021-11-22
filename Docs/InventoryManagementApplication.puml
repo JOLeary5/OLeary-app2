@@ -1,12 +1,27 @@
 @startuml
 'https://plantuml.com/class-diagram
-GUIController->InventoryManagementApplication
+GUIController<-InventoryManagementApplication
 GUIController-->saveItemList
 GUIController-->loadItemList
+GUIController->AddItemController
+GUIController->EditItemController
 ItemList->GUIController
 Item->ItemList
 
-
+class AddItemController{
+This class will contain the controller for the
+Add item Screen
+ - createItemAction()
+ - productNumberMatchCheck()
+ - setParentController()
+}
+class EditItemController{
+This class will contain the controller for the
+Edit item Screen
+ - editItemAction()
+ - productNumberMatchCheck()
+ - setParentController()
+}
 class InventoryManagementApplication{
 This is the Entry point for the Application
 
@@ -17,11 +32,17 @@ class GUIController{
 This class will be the main body of
 my program and will control the GUI Controls
 
- -addItemButton
- -searchItemButton
- -deleteItemButton
- -helpButton
- -ListView
+ - initialize()
+ - addItemAction()
+ - editItemAction()
+ - deleteItemAction()
+ - clearItemListAction()
+ - sortByValueAction()
+ - sortSerialNumberAction()
+ - saveItemsAction()
+ - loadItemsAction()
+ - openUserGuide1Action()
+ - openUserGuide2Action()
 }
 
 class ItemList{
@@ -30,14 +51,7 @@ list of items
 
  - Item currentItem
  - ObservableList<Item> ItemList.
-
- -getItemList();
- -setItemList();
- -getCurrentItem();
- -setCurrentItem();
- -sortItemsByValue();
- -sortItemsBySerialNumber();
- -sortItemsByName();
+ - addItem();
 }
 
 class Item{
@@ -62,11 +76,19 @@ class Item{
 class saveItemList{
 Takes the Current Item Lists and saves
 it to a file of a users choosing
-}
+ -saveTSB()
+ -saveHTML()
+ -saveJSON()
+ -setParentController()
+ }
 
 class loadItemList{
 Takes the Current Item Lists and saves
 it to a file of a users choosing
+  -loadTSB()
+  -loadHTML()
+  -loafJSON()
+  -setParentController()
 }
 
 @enduml
