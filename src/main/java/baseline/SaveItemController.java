@@ -1,11 +1,21 @@
+/*
+ *  UCF COP3330 Fall 2021 Application Assignment 2 Solution
+ *  Copyright 2021 Jonathan O'Leary
+ */
 package baseline;
+
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import org.json.simple.JSONObject;
 
 import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class saveItemController {
+public class SaveItemController {
 
     private GUIController controller;
 
@@ -51,8 +61,17 @@ public class saveItemController {
         }
     }
 
-    public void saveJSON() {
+    public void saveJSON() throws IOException {
         System.out.println("Saving by Jason");
+
+        JFrame parent = new JFrame();
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify a file to save");
+
+        int userSelection = fileChooser.showSaveDialog(parent);
+        if (userSelection == JFileChooser.APPROVE_OPTION){
+        }
     }
 
     public void setParentController(GUIController guiController) {this.controller = guiController;}

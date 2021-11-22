@@ -1,3 +1,7 @@
+/*
+ *  UCF COP3330 Fall 2021 Application Assignment 2 Solution
+ *  Copyright 2021 Jonathan O'Leary
+ */
 package baseline;
 
 public class Item {
@@ -24,6 +28,6 @@ public class Item {
         this.setItemName(name);
     }
 
-    public  String toString() {return this.name+"\t"+this.productNumber+"\t$"+this.value;}
+    public  String toString() {return this.name+"\t\t"+this.productNumber+"\t\t$"+this.value;}
 
 }

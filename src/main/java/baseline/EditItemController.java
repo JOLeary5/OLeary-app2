@@ -1,3 +1,7 @@
+/*
+ *  UCF COP3330 Fall 2021 Application Assignment 2 Solution
+ *  Copyright 2021 Jonathan O'Leary
+ */
 package baseline;
 
 import javafx.fxml.FXML;
@@ -8,7 +12,7 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class addItemController {
+public class EditItemController {
 
     @FXML
     TextField itemNameTextField;
@@ -19,7 +23,9 @@ public class addItemController {
 
     private GUIController controller;
 
-    public void createItemAction() {
+
+    public void editItemAction() {
+        System.out.println("Editing Current Item");
         String name = itemNameTextField.getText();
         String productNumber = itemProductNumberTextField.getText();
         String productValue = itemValueTextField.getText();
@@ -37,12 +43,26 @@ public class addItemController {
         if ((nameLength>=2) && (nameLength<=256)){
             if (productNumberFormatCheck){
                 System.out.println("ProductNumber Check (PASSED)");
-                if (Boolean.TRUE.equals(productNumberSimilarCheck)){
+                if (Boolean.TRUE.equals(productNumberSimilarCheck)) {
                     try {
                         value = Double.parseDouble(productValue);
-                        controller.userItemList.addItem(value,productNumber,name);
-                    }
-                    catch (NumberFormatException ignore){
+                        if (value>=0) {
+                            controller.currentItem.setItemName(name);
+                            controller.currentItem.setItemValue(value);
+                            controller.currentItem.setItemProductNumber(productNumber);
+                            controller.listViewWindow.refresh();
+                        }
+                        else {
+                            System.out.println("Incorrect Value Format");
+                            JFrame helpFrame = new JFrame();
+                            ImageIcon icon =new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("errorScreen(IncorrectValue).PNG")));
+
+                            JLabel label = new JLabel(icon);
+                            helpFrame.add(label);
+                            helpFrame.pack();
+                            helpFrame.setVisible(true);
+                        }
+                    } catch (NumberFormatException ignore) {
                         System.out.println("Incorrect Value Format");
                         JFrame helpFrame = new JFrame();
                         ImageIcon icon =new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("errorScreen(IncorrectValue).PNG")));
@@ -72,7 +92,6 @@ public class addItemController {
                 helpFrame.add(label);
                 helpFrame.pack();
                 helpFrame.setVisible(true);
-
             }
         }
 
@@ -86,6 +105,7 @@ public class addItemController {
             helpFrame.pack();
             helpFrame.setVisible(true);
         }
+
     }
 
     private Boolean productNumberMatchingCheck(String productNum) {

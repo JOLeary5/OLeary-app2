@@ -27,7 +27,8 @@
                       </Menu>
                       <Menu mnemonicParsing="false" text="Help">
                         <items>
-                          <MenuItem mnemonicParsing="false" text="Help" />
+                          <MenuItem mnemonicParsing="false" onAction="#openUserGuide1Action" text="Program Help" />
+                              <MenuItem mnemonicParsing="false" onAction="#openUserGuide2Action" text="File I/O Help" />
                         </items>
                       </Menu>
                     </menus>

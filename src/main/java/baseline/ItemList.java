@@ -1,3 +1,7 @@
+/*
+ *  UCF COP3330 Fall 2021 Application Assignment 2 Solution
+ *  Copyright 2021 Jonathan O'Leary
+ */
 package baseline;
 
 import javafx.collections.FXCollections;
@@ -6,9 +10,6 @@ import javafx.collections.ObservableList;
 public class ItemList {
 
     ObservableList<Item> itemListAll = FXCollections.observableArrayList();
-    Item currentItem;
-
-    public void setItemList(ObservableList<Item> listAll){this.itemListAll = listAll;}
 
     public ObservableList<Item> getItemList(){return itemListAll;}
 

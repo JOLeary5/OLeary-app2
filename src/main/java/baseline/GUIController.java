@@ -1,3 +1,7 @@
+/*
+ *  UCF COP3330 Fall 2021 Application Assignment 2 Solution
+ *  Copyright 2021 Jonathan O'Leary
+ */
 package baseline;
 
 import javafx.collections.transformation.FilteredList;
@@ -12,9 +16,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Comparator;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class GUIController implements Initializable {
@@ -67,7 +73,7 @@ public class GUIController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("addItemWindow.fxml"));
         Parent root = loader.load();
-        addItemController addItemControl = loader.getController();
+        AddItemController addItemControl = loader.getController();
         addItemControl.setParentController(this);
 
         Stage stage = new Stage();
@@ -81,7 +87,7 @@ public class GUIController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("editItemWindow.fxml"));
         Parent root = loader.load();
-        editItemController editItemControl = loader.getController();
+        EditItemController editItemControl = loader.getController();
 
         editItemControl.itemNameTextField.setText(currentItem.getItemName());
         editItemControl.itemValueTextField.setText(currentItem.getItemValue().toString());
@@ -123,7 +129,7 @@ public class GUIController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("saveItemsWindow.fxml"));
         Parent root = loader.load();
-        saveItemController saveItemControl = loader.getController();
+        SaveItemController saveItemControl = loader.getController();
         saveItemControl.setParentController(this);
 
         Stage stage = new Stage();
@@ -137,7 +143,7 @@ public class GUIController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("loadItemsWindow.fxml"));
         Parent root = loader.load();
-        loadItemController loadItemControl = loader.getController();
+        LoadItemController loadItemControl = loader.getController();
         loadItemControl.setParentController(this);
 
         Stage stage = new Stage();
@@ -145,4 +151,23 @@ public class GUIController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+    public void openUserGuide1Action() {
+        JFrame helpFrame = new JFrame();
+        ImageIcon icon =new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("HelpScreen1.PNG")));
+
+        JLabel label = new JLabel(icon);
+        helpFrame.add(label);
+        helpFrame.pack();
+        helpFrame.setVisible(true);
+    }
+
+    public void openUserGuide2Action() {
+        JFrame helpFrame = new JFrame();
+        ImageIcon icon =new ImageIcon(Objects.requireNonNull(getClass().getClassLoader().getResource("HelpScreen2.PNG")));
+
+        JLabel label = new JLabel(icon);
+        helpFrame.add(label);
+        helpFrame.pack();
+        helpFrame.setVisible(true);}
 }

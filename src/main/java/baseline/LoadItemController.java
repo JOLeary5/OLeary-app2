@@ -1,10 +1,22 @@
+/*
+ *  UCF COP3330 Fall 2021 Application Assignment 2 Solution
+ *  Copyright 2021 Jonathan O'Leary
+ */
 package baseline;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
 import javax.swing.*;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.Scanner;
 
-public class loadItemController {
+public class LoadItemController {
 
     private GUIController controller;
 
@@ -25,6 +37,7 @@ public class loadItemController {
             Scanner scanR = new Scanner(fileChooser.getSelectedFile());
 
             while (scanR.hasNextLine()){
+
                 String line = scanR.nextLine();
                 String[] items = line.split("\t");
 
@@ -34,6 +47,7 @@ public class loadItemController {
 
                 double value = Double.parseDouble(items[2]);
                 controller.userItemList.itemListAll.add(new Item(value,items[1],items[0]));
+
             }
             scanR.close();
         }
@@ -43,8 +57,28 @@ public class loadItemController {
         System.out.println("Loading By HTML");
     }
 
-    public void loadJSON() {
+    public void loadJSON() throws IOException {
         System.out.println("Loading by Jason");
+
+        JFrame parent = new JFrame();
+
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Specify a file to load");
+
+        int userSelection = fileChooser.showSaveDialog(parent);
+        if (userSelection == JFileChooser.APPROVE_OPTION){
+
+            Scanner scanR = new Scanner(fileChooser.getSelectedFile());
+            JSONParser jParser = new JSONParser();
+
+            while (scanR.hasNextLine()) {
+                String line = scanR.nextLine();
+
+                System.out.println(line);
+
+            }
+        }
+
     }
 
     public void setParentController(GUIController guiController) {this.controller = guiController;}
